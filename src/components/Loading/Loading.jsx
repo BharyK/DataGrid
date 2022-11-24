@@ -1,10 +1,20 @@
-import * as React from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
+import * as React from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
-import './Loading.css';
+const Loading = () => {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "600px",
+      }}
+    >
+      <CircularProgress className="loading-icon-mui" />
+    </Box>
+  );
+};
 
-export const Loading = () => (
-  <div className="loading-shading-mui">
-    <CircularProgress className="loading-icon-mui" />
-  </div>
-);
+export { Loading };

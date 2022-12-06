@@ -81,7 +81,12 @@ const comparePriority = (a, b) => {
   return priorityA < priorityB ? -1 : 1;
 };
 
-function DataGrid({ rowsData, columnHeadersData, handleEditColumnHeader }) {
+function DataGrid({
+  rowsData,
+  columnHeadersData,
+  handleEditColumnHeader,
+  defaultColoumnWidth,
+}) {
   const exporterRef = useRef(null);
   const {
     setEditHeaderStatus,
@@ -93,6 +98,7 @@ function DataGrid({ rowsData, columnHeadersData, handleEditColumnHeader }) {
   const [integratedSortingColumnExtensions] = useState([
     { columnName: "priority", compare: comparePriority },
   ]);
+  const [filterOption, setFilterOption] = useState();
 
   const startExport = useCallback(() => {
     exporterRef.current.exportGrid();
@@ -104,6 +110,15 @@ function DataGrid({ rowsData, columnHeadersData, handleEditColumnHeader }) {
 
   const handleColumnHeader = (data) => {
     handleEditColumnHeader(data);
+  };
+  const handleResetFilter = () => {
+    alert ("Bharath")
+    setFilterOption([
+      {
+        columnName: "",
+        value: ""
+      }
+    ]);
   };
 
   return (
@@ -119,7 +134,7 @@ function DataGrid({ rowsData, columnHeadersData, handleEditColumnHeader }) {
         <PagingState defaultCurrentPage={0} pageSize={50} />
         <EditingState columnEditingEnabled={true} />
         <SortingState />
-        <FilteringState defaultFilters={[]} />
+        <FilteringState filter={filterOption}/>
         <IntegratedSorting
           columnExtensions={integratedSortingColumnExtensions}
         />
@@ -127,10 +142,10 @@ function DataGrid({ rowsData, columnHeadersData, handleEditColumnHeader }) {
         <IntegratedFiltering />
         <IntegratedPaging />
         <Table />
-        <TableColumnResizing />
+        <TableColumnResizing defaultColumnWidths={defaultColoumnWidth} />
         <DragDropProvider />
         <TableHeaderRow showSortingControls />
-        <TableFilterRow />
+        <TableFilterRow  />
         <TableColumnReordering
           order={columnOrdersData}
           onOrderChange={setColumnOrdersData}
@@ -142,8 +157,11 @@ function DataGrid({ rowsData, columnHeadersData, handleEditColumnHeader }) {
           <Button variant="contained" onClick={handleEditHeader}>
             Edit Header
           </Button>
+          <Button variant="contained">Fetch Report</Button>
           <Button variant="contained">Save</Button>
-          <Button variant="contained">Fetch Files</Button>
+          <Button variant="contained" onClick={handleResetFilter}>
+            Reset Coloumn's
+          </Button>
         </Stack>
 
         <PagingPanel />

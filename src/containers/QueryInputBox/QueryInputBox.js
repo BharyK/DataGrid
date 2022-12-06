@@ -27,7 +27,7 @@ function QueryInputBox({ setQuery, value, setValue, isOpen }) {
       }}
     >
       <AceEditor
-        placeholder=""
+        placeholder="Select * from API_Details"
         mode="mysql"
         theme="xcode"
         name="blah2"
@@ -39,7 +39,7 @@ function QueryInputBox({ setQuery, value, setValue, isOpen }) {
         showPrintMargin={true}
         showGutter={true}
         highlightActiveLine={true}
-        value={``}
+        value={`Select * from API_Details;`}
         setOptions={{
           enableBasicAutocompletion: true,
           enableLiveAutocompletion: true,
@@ -50,12 +50,12 @@ function QueryInputBox({ setQuery, value, setValue, isOpen }) {
       />
       <Box
         display="flex"
-        justifyContent="space-between"
+        justifyContent="end"
         alignItems="center"
         alignSelf="center"
         alignContent="center"
       >
-        <FormHelperText sx={{ color: "red" }}>
+        <FormHelperText sx={{ color: "red", display : "none" }}>
           Please run query again
         </FormHelperText>
         <Button

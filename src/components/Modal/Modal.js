@@ -28,13 +28,12 @@ function ConfirmationModal({
     const data = new FormData(e.currentTarget);
     const userDetails = columnHeader.map((item, index) => {
       const details = {
-        name: data.get(item.name),
-        title: data.get(item.name),
+        name: data.get(item.name) === "" ? item.name : data.get(item.name),
+        title: data.get(item.name) === "" ? item.name : data.get(item.name),
       };
       return details;
     });
     handleColumnHeader(userDetails);
-    console.log("userDetails", userDetails);
   };
   return (
     <div>
@@ -85,6 +84,21 @@ function ConfirmationModal({
                   justifyContent: "flex-end",
                 }}
               >
+                <Button
+                  onClick={onClose}
+                  variant="contained"
+                  type="submit"
+                  sx={{
+                    background: "#dcdcdc",
+                    marginLeft: "20px",
+                    marginRight: "20px",
+                    ": hover": {
+                      background: "#dcdcdc",
+                    },
+                  }}
+                >
+                  Cancel
+                </Button>
                 <Button variant="contained" type="submit">
                   Submit
                 </Button>

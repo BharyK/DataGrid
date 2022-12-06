@@ -10,6 +10,7 @@ import { dataGridStore } from "../../store/DataGrid.store";
 function LandingPage() {
   const [columnHeader, setColumnHeader] = useState();
   const [rowsData, setRowsData] = useState();
+  const [defaultColoumnWidth, setDefaultColoumnWidth] = useState()
   const { isLoading, setIsLoading, setColumnOrdersData, setEditHeaderStatus } =
     dataGridStore((state) => state);
 
@@ -23,6 +24,8 @@ function LandingPage() {
         setColumnOrdersData(keyNames);
         setRowsData(response.data.entries);
         const result = objArray.map((item) => ({ name: item, title: item }));
+        const coloumnWidth = objArray.map((item) => ({columnName: item, width: 180 }))
+        setDefaultColoumnWidth(coloumnWidth)
         setColumnHeader(result);
         setIsLoading(true);
       })
@@ -36,6 +39,8 @@ function LandingPage() {
     const headerValue = data.map((item) => {
       return item.name;
     });
+    const coloumnWidth = data.map((item) => ({columnName: item, width: 180 }))
+    setDefaultColoumnWidth(coloumnWidth)
     setColumnOrdersData(headerValue);
     setEditHeaderStatus(false);
   };
@@ -64,6 +69,7 @@ function LandingPage() {
             rowsData={rowsData}
             columnHeadersData={columnHeader}
             handleEditColumnHeader={handleEditColumnHeader}
+            defaultColoumnWidth = {defaultColoumnWidth}
           />
         </Box>
       )}

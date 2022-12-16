@@ -1,8 +1,6 @@
 import { Box } from "@mui/material";
-import "./App.css";
 import { Loading } from "./components/Loading";
-import { LandingPage } from "./containers/LandingPage/LandingPage";
-import { SignIn } from "./containers/LogIn/Login";
+import { LandingPage } from "./containers/LandingPage";
 import { dataGridStore } from "./store/DataGrid.store";
 
 function App() {

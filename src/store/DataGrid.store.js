@@ -9,10 +9,12 @@ const dataGridStore = create((set) => ({
   setColumnOrdersData: (columnOrder) =>
     set(() => ({ columnOrdersData: columnOrder })),
 
-    
-
   isLoading: false,
   setIsLoading: (loading) => set(() => ({ isLoading: loading })),
+
+  summaryData: [],
+  setSummaryData: (data) => set(() => ({ summaryData: data })),
+  
 }));
 
 export { dataGridStore };
